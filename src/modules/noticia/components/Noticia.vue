@@ -1,11 +1,18 @@
 <template>
-<div>
-  <p>{{ noticia.id }}</p>
-  <p>{{ noticia.fecha }}</p>
-  <p>{{ noticia.texto }}</p>
-
-  <img :src="noticia.foto" alt="" />
+  <div class="card" style="margin: 1rem; padding: 1rem;">
+    <p>{{ noticia.id }}</p>
+    <p>{{ noticia.fecha }}</p>
+    <div v-if="noticia.texto!=null" class="card-body">
+    <p>{{ noticia.texto }}</p>
   </div>
+    <img :src="noticia.imagen" alt="">
+
+    <iframe width="360" height="280" :src="noticia.video" title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+  </div>
+  
 </template>
 
 <script>
@@ -23,5 +30,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -7,8 +7,8 @@ export const obtenerEstudianteFachada = async (cedula) => {
 
 }
 
-export const ingresarEstudianteFachada = (bodyEstudiante) => {
-    ingresarEstudianteAPIAxios(bodyEstudiante)
+export const ingresarNoticiaFachada = (bodyNoticia) => {
+    ingresarNoticia(bodyNoticia)
 }
 
 export const obtenerTodasNoticiasFachada = () => {
@@ -28,8 +28,10 @@ const obtenerTodasNoticias = async () => {
     return data
 
 }
-const ingresarEstudianteAPIAxios = (bodyEstudiante) => {
-    axios.post(url, bodyEstudiante).then(r => r.data)
+const ingresarNoticia = (bodyNoticia) => {
+    console.log(bodyNoticia)
+
+    axios.post(url, bodyNoticia).then(r => r.data)
 }
 const actualizarEstudiante = (bodyEstudiante, id) => {
     axios.put(url + "/" + id, bodyEstudiante).then(r => r.data)

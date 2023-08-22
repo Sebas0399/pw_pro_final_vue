@@ -1,18 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Noticias from '../modules/noticia/components/TodasNoticias.vue'
+import Foros from '../modules/foro/components/TodasForo.vue'
+import ForosInsertar from '../modules/foro/components/InsertarForo.vue'
+
+import NoticiasInsertar from '../modules/noticia/components/InsertarNoticia.vue'
 
 const routes = [
   {
     path: '/noticias',
     name: 'noticias',
     component: Noticias,
-    children: [
-      {
-        path: "/todos",
-        component: HomeView
-      }
-    ]
+    
+  },
+  {
+    path: '/foros',
+    name: 'foros',
+    component: Foros,
+    
+  },
+  {
+    path: '/noticiasInsertar',
+    name: 'noticiasInsertar',
+    component: NoticiasInsertar,
+    
+  },
+  {
+    path: '/forosInsertar',
+    name: 'forosInsertar',
+    component: ForosInsertar,
+    
   },
   {
     path: '/',
