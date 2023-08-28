@@ -1,5 +1,5 @@
 import axios from "axios"
-const url = "http://localhost:8080/API/v1.0/Facultad/noticias"
+const url = "http://localhost:8081/API/v1.0/Facultad/noticias"
 
 export const obtenerEstudianteFachada = async (cedula) => {
 

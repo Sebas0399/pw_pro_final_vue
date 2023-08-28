@@ -5,7 +5,7 @@ import Foros from '../modules/foro/components/TodasForo.vue'
 import ForosInsertar from '../modules/foro/components/InsertarForo.vue'
 
 import NoticiasInsertar from '../modules/noticia/components/InsertarNoticia.vue'
-
+import IngresarSuscripcion from '../modules/suscripcion/pages/IngresarSuscripcion.vue'
 const routes = [
   {
     path: '/noticias',
@@ -43,7 +43,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '/suscribirse',
+    name: 'Suscribirse',
+    component: IngresarSuscripcion,
+    
   }
+
 ]
 
 const router = createRouter({

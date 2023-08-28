@@ -33,6 +33,18 @@
             </ul>
           </li>
 
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Acercamiento con el Estudiante
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li> <router-link to="/suscribirse" class="dropdown-item">Suscripción Aso</router-link>
+              </li>
+              <li><router-link to="/forosInsertar" class="dropdown-item">Administrar</router-link></li>
+            </ul>
+          </li>
+
         </ul>
 
       </div>
