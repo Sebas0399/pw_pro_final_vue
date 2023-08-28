@@ -1,7 +1,9 @@
 <template>
+   <HelloWorld v-if="isHomePage"/>
+   <!-- <HelloWorld/> -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">UCE</a>
+      <a class="navbar-brand" href="/">UCE</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,9 +42,25 @@
   </nav>
 
   <router-view />
-</template>
+  <img v-if="isHomePage" src="./assets/img/logoUceWhite.png" class="center-image">
 
-<style>
+
+</template>
+<script>
+import HelloWorld from "./modules/foro/components/HelloWorld.vue"
+export default {
+  components: { 
+    HelloWorld 
+  },
+computed:{
+  isHomePage(){
+    return this.$route.path === "/";
+  }
+}
+}
+</script>
+
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -59,5 +77,14 @@ nav {
 
 nav a.router-link-exact-active {
   color: cornflowerblue;
+}
+
+.center-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  max-width: 50%;
+  max-height: 50%;
 }
 </style>
