@@ -44,10 +44,7 @@ export default {
       this.paginar()
     },
     paginar(index){
-      //1 0-9
-      //2 10-19
-      //3 20-39
-      //4 40-lenNoticias
+      
       this.noticiasPag=this.noticias.slice((index-1)*10,((index-1)*10)+9)
     }
    

@@ -5,7 +5,8 @@ import Foros from '../modules/foro/components/TodasForo.vue'
 import ForosInsertar from '../modules/foro/components/InsertarForo.vue'
 
 import NoticiasInsertar from '../modules/noticia/components/InsertarNoticia.vue'
-
+import IngresarSuscripcion from '../modules/suscripcion/pages/IngresarSuscripcion.vue'
+import IngresarQueja from "../modules/queja/components/InsertarQueja.vue";
 const routes = [
   {
     path: '/noticias',
@@ -36,14 +37,19 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/suscribirse',
+    name: 'Suscribirse',
+    component: IngresarSuscripcion,
+
+  },
+  {
+    path: '/queja',
+    name: 'queja',
+    component: IngresarQueja,
+
+  },
 ]
 
 const router = createRouter({
