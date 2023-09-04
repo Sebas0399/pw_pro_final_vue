@@ -20,6 +20,7 @@
     <div class="form-group">
       <label for="semestre">Semestre</label>
         <select class="form-control" v-model="semestre" id="semestre">
+          <option selected>Seleccione</option>
           <option value="1">Primero</option>
           <option value="2">Segundo</option>
           <option value="3">Tercero</option>
@@ -35,6 +36,9 @@
 
     <button type="submit" class="btn btn-primary" @click="suscribirse">Suscribirse</button>
   </form>
+  <div v-if="msj" class="alert alert-primary" role="alert">
+    {{mensaje}}
+</div>
 </div>
 
 </template>
@@ -49,6 +53,8 @@ export default {
     cedulaEstudiante: '',
     correoElectronico: '',
     semestre: '',
+    msj:false,
+    mensaje:""
   };
 },
 methods:{
@@ -62,6 +68,8 @@ methods:{
       semestreEstudiante: this.semestre
     };
     await ingresarSuscripcionFachada(suscripcion);
+    this.msj=true
+    this.mensaje="Se ha suscrito a la Asociaci'on de Ciencias"
   }
 }, 
 mounted(){

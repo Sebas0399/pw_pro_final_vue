@@ -25,9 +25,9 @@
         </form>
         <button  class="btn btn-primary" @click="insertarNoticia">Insertar</button>
     </div>
-    <div class="alert alert-success" role="alert">
-        Se inserto la noticia correctamente
-    </div>
+    <div v-if="msj" class="alert alert-primary" role="alert">
+    {{mensaje}}
+</div>
 </template>
 <script>
 import { ingresarNoticiaFachada } from "../helpers/NoticiaCliente.js";
@@ -41,7 +41,9 @@ export default {
         texto:"",
         video:"",
         fecha:"",
-        imagen:""
+        imagen:"",
+        msj:false,
+    mensaje:""
     },
     };
   },
@@ -51,7 +53,8 @@ export default {
         this.noticia.fecha=newDate
         console.log(this.noticia)
       await ingresarNoticiaFachada(this.noticia);
-      
+      this.msj=true
+    this.mensaje="Noticia insertada con éxito"
       
     },
   },
