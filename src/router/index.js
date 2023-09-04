@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import Noticias from '../modules/noticia/components/TodasNoticias.vue'
 import Foros from '../modules/foro/components/TodasForo.vue'
 import ForosInsertar from '../modules/foro/components/InsertarForo.vue'
@@ -31,11 +30,6 @@ const routes = [
     name: 'forosInsertar',
     component: ForosInsertar,
     
-  },
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
   },
   
   {

@@ -5,7 +5,7 @@
     <div v-if="noticia.texto!=null" class="card-body">
     <p>{{ noticia.texto }}</p>
   </div>
-    <img :src="noticia.imagen" alt="">
+    <img :src="noticia.imagen" alt="No se pudo cargar">
 
     <iframe width="360" height="280" :src="noticia.video" title="YouTube video player"
       frameborder="0"
