@@ -1,14 +1,14 @@
-<template >
+<template>
   <div>
     <h1>Noticia</h1>
-    <form class="g-3 needs-validation">
+    <form class="g-3 needs-validation" @submit.prevent="submitForm" novalidate>
       <div class="mb-3">
         <label for="fechaInput" class="form-label">Fecha</label>
         <input type="date" class="form-control" id="fechaInput" v-model="noticia.fecha" required>
       </div>
-      <div class="mb-3 ">
+      <div class="mb-3">
         <label for="tituloInput" class="form-label">Titulo</label>
-        <input type="text" class="form-control" id="tituloInput" required v-model="noticia.titulo" />
+        <input type="text" class="form-control" id="tituloInput" v-model="noticia.titulo" required>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="texto" v-model="enabled.texto">
@@ -25,36 +25,31 @@
 
       <div class="mb-3 " v-if="enabled.texto">
         <label for="textoInput" class="form-label">Texto</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required
-          v-model="noticia.texto"></textarea>
+        <textarea class="form-control" id="textoInput" rows="3" v-model="noticia.texto"></textarea>
       </div>
       <div class="mb-3 " v-if="enabled.imagen">
         <label for="imagenInput" class="form-label">Imagen</label>
-        <input type="file" class="form-control" id="imagenInput" required @change="capturar">
-
+        <input type="file" class="form-control" id="imagenInput" @change="capturar">
       </div>
       <div class="mb-3 " v-if="enabled.video">
         <label for="videoInput" class="form-label">Video</label>
-        <input type="text" class="form-control" id="videoInput" required v-model="noticia.video">
-
+        <input type="text" class="form-control" id="videoInput" v-model="noticia.video">
       </div>
-      <div>
-        <button class="btn btn-primary" @click="insertarNoticia">Insertar</button>
 
-      </div>
     </form>
 
-
-    <div v-if="msj" class="alert alert-primary" role="alert">
-      {{ mensaje }}
+    <div>
+      <button type="button" class="btn btn-primary" @click="insertarNoticia">Insertar</button>
     </div>
+  </div>
+  <div v-if="msj" class="alert alert-primary" role="alert">
+    {{ mensaje }}
   </div>
 </template>
 <script>
 import { ingresarNoticiaFachada } from "../helpers/NoticiaCliente.js";
 export default {
   mounted() {
-
   },
   data() {
     return {
@@ -64,9 +59,10 @@ export default {
         video: "",
         fecha: "",
         imagen: "",
-        msj: false,
-        mensaje: ""
+        
       },
+      msj: false,
+      mensaje: "",
       enabled: {
         texto: false,
         video: false,
@@ -87,13 +83,24 @@ export default {
       console.log(this.noticia)
 
     },
+   
+
     async insertarNoticia() {
-      var newDate = new Date(this.noticia.fecha + 'T00:00');
-      this.noticia.fecha = newDate
-      this.noticia.video = this.convertirEnlace(this.noticia.video)
-      await ingresarNoticiaFachada(this.noticia);
-      this.msj=true
-    this.mensaje="Noticia insertada con éxito"
+      if (!this.noticia.fecha || !this.noticia.titulo) {
+        this.msj = true;
+        this.mensaje = "Por favor, complete los campos obligatorios (Fecha y Título).";
+
+      }
+      else {
+        var newDate = new Date(this.noticia.fecha + 'T00:00');
+        this.noticia.fecha = newDate
+        this.noticia.video = this.convertirEnlace(this.noticia.video)
+        console.log(this.noticia)
+        await ingresarNoticiaFachada(this.noticia);
+        this.msj = true
+        this.mensaje = "Noticia insertada con éxito"
+      }
+
     },
     convertirEnlace(originalURL) {
       // Verifica si la URL es un enlace de YouTube válido
@@ -107,7 +114,7 @@ export default {
         return embedURL;
       } else {
         // Si la URL no coincide con el patrón, devuelve un mensaje de error
-        return "URL de YouTube no válida";
+        return "";
       }
     }
   },

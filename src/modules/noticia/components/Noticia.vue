@@ -2,10 +2,11 @@
   <div class="card" style="margin: 1rem; padding: 1rem;">
     <p>{{ noticia.fecha }}</p>
     <p>{{ noticia.titulo }}</p>
-    <div v-if="noticia.texto != undefined" class="card-body">
+    <div v-if="noticia.texto != ''" class="card-body">
       <p>{{ noticia.texto.length > 100 ? noticia.texto.slice(0, 500) + '...' : noticia.texto }}</p>
     </div>
-    <img :src="noticia.imagen" alt="">
+    <img :src="noticia.imagen" alt="" v-if="noticia.imagen != ''">
+    <h1 v-if="noticia.video != ''">SAPO</h1>
 
     <iframe v-if="noticia.video != ''" width="360" height="280" :src="noticia.video" title="YouTube video player"
       frameborder="0"
@@ -13,8 +14,8 @@
       allowfullscreen></iframe>
 
     <!-- Botón para redirigir a otra página -->
-    
-    <div class="modal" tabindex="-1" :id="'myModal-'+noticia.id">
+
+    <div class="modal" tabindex="-1" :id="'myModal-' + noticia.id">
       <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
@@ -22,7 +23,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>{{noticia.texto}}</p>
+            <p>{{ noticia.texto }}</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -31,7 +32,8 @@
         </div>
       </div>
     </div>
-    <button v-if="noticia.texto && noticia.texto.length > 500" type="button" data-bs-toggle="modal" :data-bs-target="'#myModal-'+noticia.id">Launch modal</button>
+    <button v-if="noticia.texto && noticia.texto.length > 500" type="button" data-bs-toggle="modal"
+      :data-bs-target="'#myModal-' + noticia.id">Ver mas</button>
   </div>
 </template>
 
@@ -56,7 +58,7 @@ export default {
       const mesTexto = meses[fecha.getMonth()];
       this.noticia.fecha = diaSemanaTexto + " " + fecha.getDate() + " " + mesTexto + " " + fecha.getFullYear();
     },
-    
+
   },
 };
 </script>
