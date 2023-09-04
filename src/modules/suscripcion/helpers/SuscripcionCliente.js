@@ -1,5 +1,5 @@
 import axios from "axios"
-const url = "http://localhost:8081/API/v1.0/Facultad/suscripciones"
+const url = "http://localhost:8080/API/v1.0/Facultad/suscripciones"
 
 
 
@@ -40,7 +40,6 @@ const eliminarSuscripcion = async (id) => {
 
 
 const ingresarSuscripcion = (bodySuscripcion) => {
-    console.log(bodySuscripcion)
 
     axios.post(url, bodySuscripcion).then(r => r.data)
 }

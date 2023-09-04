@@ -34,7 +34,7 @@ const routes = [
   
   {
     path: '/suscribirse',
-    name: 'Suscribirse',
+    name: 'suscribirse',
     component: IngresarSuscripcion,
 
   },
