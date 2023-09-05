@@ -1,86 +1,104 @@
 <template>
     <div class="card" style="margin: 1rem; padding: 1rem;">
-        <p>{{ foro.tema }}</p>
-        <h1>Comentarios</h1>
-        <span class="badge bg-primary rounded-pill" v-if="this.foro.comentarios != null">{{ this.foro.comentarios.length
-        }}</span>
-        <ol class="list-group list-group-numbered">
-            <li class="list-group-item d-flex justify-content-between align-items-start"
-                v-for="(comentario) in foro.comentarios" :key="comentario">
-                <div class="ms-2 me-auto">
-                    {{ comentario }}
-                </div>
-
-            </li>
-        </ol>
-        <p>Agregar comentario</p>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required v-model="newComentario" ></textarea>
-        <button type="button" class="btn btn-primary" @click="ponerComentario">Comentar</button>
-        <!-- <button @click="getID">Ckc</button>
-        <div v-if="showModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="text" v-model="newComentario">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" @click="closeModal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" @click="ponerComentario">Comentar</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    </div>
-</template>
+      <p>{{ foro.tema }}</p>
+      <h1>Comentarios</h1>
+      <span class="badge bg-primary rounded-pill" v-if="foro.comentarios != null">{{ foro.comentarios.length }}</span>
+      <ol class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-start"
+            v-for="(comentario, index) in comentariosPaginados" :key="index">
+          <div class="ms-2 me-auto">
+            {{ comentario }}
+          </div>
+        </li>
+      </ol>
   
-<script>
-import { actualizarForoFachada } from "../helpers/ForoCliente.js";
-
-export default {
+      <!-- Paginación -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item" :class="{ 'disabled': paginaActual === 1 }">
+            <a class="page-link" href="#" @click="irAPagina(paginaActual - 1)">Anterior</a>
+          </li>
+          <li class="page-item" v-for="pagina in paginas" :key="pagina" :class="{ 'active': paginaActual === pagina }">
+            <a class="page-link" href="#" @click="irAPagina(pagina)">{{ pagina }}</a>
+          </li>
+          <li class="page-item" :class="{ 'disabled': paginaActual === paginas }">
+            <a class="page-link" href="#" @click="irAPagina(paginaActual + 1)">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
+  
+      <p>Agregar comentario</p>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required v-model="newComentario"></textarea>
+      <button type="button" class="btn btn-primary" @click="ponerComentario">Comentar</button>
+    </div>
+  </template>
+  
+  <script>
+  import { actualizarForoFachada } from "../helpers/ForoCliente.js";
+  
+  export default {
     data() {
-        return {
-            showModal: false,
-            newComentario: null
-        };
+      return {
+        showModal: false,
+        newComentario: null,
+        comentariosPorPagina: 5, // Número de comentarios por página
+        paginaActual: 1,
+      };
     },
     mounted() {
-        console.log(this.foro.id);
+      console.log(this.foro.id);
     },
     props: {
-        foro: {
-            name: Object,
-            required: true,
-        },
+      foro: {
+        name: Object,
+        required: true,
+      },
+    },
+    computed: {
+      comentariosPaginados() {
+        if (this.foro.comentarios) {
+          const startIndex = (this.paginaActual - 1) * this.comentariosPorPagina;
+          const endIndex = startIndex + this.comentariosPorPagina;
+          return this.foro.comentarios.slice(startIndex, endIndex);
+        } else {
+          return [];
+        }
+      },
+      paginas() {
+        if (this.foro.comentarios) {
+          return Math.ceil(this.foro.comentarios.length / this.comentariosPorPagina);
+        } else {
+          return 1;
+        }
+      },
     },
     methods: {
-        getID() {
-            console.log(this.foro.id)
-            this.showModal = true
-        },
-        closeModal() {
-            this.showModal = false
-        },
-        async ponerComentario() {
-            console.log(this.foro.id)
-            this.showModal = false
-            if (this.foro.comentarios != null) {
-                this.foro.comentarios.push(this.newComentario)
-                await actualizarForoFachada(this.foro, this.foro.id);
-            }
-            else{
-                this.foro.comentarios=[this.newComentario]
-                await actualizarForoFachada(this.foro, this.foro.id);
-            }
-
-
-
+      getID() {
+        console.log(this.foro.id);
+        this.showModal = true;
+      },
+      closeModal() {
+        this.showModal = false;
+      },
+      irAPagina(pagina) {
+        if (pagina >= 1 && pagina <= this.paginas) {
+          this.paginaActual = pagina;
         }
+      },
+      async ponerComentario() {
+        console.log(this.foro.id);
+        this.showModal = false;
+        if (this.foro.comentarios) {
+          this.foro.comentarios.push(this.newComentario);
+          await actualizarForoFachada(this.foro, this.foro.id);
+        } else {
+          this.foro.comentarios = [this.newComentario];
+          await actualizarForoFachada(this.foro, this.foro.id);
+        }
+      },
     },
-};
-</script>
+  };
+  </script>
   
-<style></style>
+  <style></style>
+  

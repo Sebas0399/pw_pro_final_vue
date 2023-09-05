@@ -1,54 +1,62 @@
 import axios from "axios"
 const url = "http://localhost:8080/API/v1.0/Facultad/foros"
 
-export const obtenerEstudianteFachada = async (cedula) => {
-
-    return await obtenerEstudianteAPIAxios(cedula);
-
-}
-
 export const ingresarForoFachada = (bodyForo) => {
-    ingresarForo(bodyForo)
+    return ingresarForo(bodyForo);
 }
 
 export const obtenerTodasForoFachada = () => {
-    return obtenerTodasForo()
+    return obtenerTodasForo();
 }
+
 export const obtenerForoFachada = (id) => {
-    return obtenerForo(id)
+    return obtenerForo(id);
 }
 
 export const eliminarEstudianteFachada = async (id) => {
-    await eliminarEstudiante(id)
+    await eliminarEstudiante(id);
 }
 
-
-export const actualizarForoFachada = async (id) => {
-    await actualizarForo(id)
+export const actualizarForoFachada = async (bodyForo, id) => {
+    return actualizarForo(bodyForo, id);
 }
-
-
 
 const obtenerTodasForo = async () => {
-    const data = axios.get(url).then(r => r.data)
-    console.log(data)
-    return data
-
+    try {
+        const response = await axios.get(url);
+        console.log(response.status); // Código de estado
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
 }
+
 const obtenerForo = async (id) => {
-    const data = axios.get(url+ "/" + id).then(r => r.data)
-    console.log(data)
-    return data
+    try {
+        const response = await axios.get(url + "/" + id);
+        console.log(response.status); // Código de estado
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
+const ingresarForo = async (bodyForo) => {
+    try {
+        const response = await axios.post(url, bodyForo);
+        console.log(response.status); // Código de estado
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
 }
-const ingresarForo = (bodyForo) => {
-    console.log(bodyForo)
 
-    axios.post(url, bodyForo).then(r => r.data)
-}
-const actualizarForo = (bodyForo, id) => {
-    axios.put(url , bodyForo).then(r => r.data)
-}
-const eliminarEstudiante = async (id) => {
-    axios.delete(url + "/" + id).then(r => r.data)
+const actualizarForo = async (bodyForo, id) => {
+    try {
+        const response = await axios.put(url + "/" + id, bodyForo);
+        console.log(response.status); // Código de estado
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
 }

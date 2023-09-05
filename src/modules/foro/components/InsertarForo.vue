@@ -9,12 +9,12 @@
             </div>
 
 
-            <button class="btn btn-primary" @click="insertarForo">Insertar</button>
         </form>
         <button class="btn btn-primary" @click="insertarForo">Insertar</button>
     </div>
-    <div class="alert alert-success" role="alert">
-        Se inserto el foro correctamente
+    <div class="alert" :class="mensaje.includes('correctamente') ? 'alert-success' : 'alert-danger'" role="alert"
+        v-if="mostrarMensaje">
+        {{ mensaje }}
     </div>
 </template>
 <script>
@@ -28,20 +28,41 @@ export default {
             foro: {
                 tema: "",
 
-            },
+            }, mensaje: "",
+            mostrarMensaje: false,
         };
     },
     methods: {
         async insertarForo() {
-            await ingresarForoFachada(this.foro);
+            if (!this.foro.tema) {
+                this.mensaje = "El campo 'Tema' no puede estar en blanco.";
+                this.mostrarMensaje = true;
 
+            }
+            else {
+                const response = await ingresarForoFachada(this.foro);
+
+                // Verifica el código de estado
+                if (response.status === 201) {
+                    this.mensaje = "Se insertó el foro correctamente";
+                } else {
+                    this.mensaje = "Hubo un error al insertar el foro";
+                }
+
+                this.mostrarMensaje = true;
+            }
 
         },
+
+
     },
 };
 </script>
 <style scoped>
 form {
     margin: 20px;
+}
+.alert{
+    margin-top: 20px;
 }
 </style>

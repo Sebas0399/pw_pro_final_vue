@@ -42,8 +42,13 @@
       <button type="button" class="btn btn-primary" @click="insertarNoticia">Insertar</button>
     </div>
   </div>
-  <div v-if="msj" class="alert alert-primary" role="alert">
+  <div v-if="msj" class="alert alert-primary alert-dismissible fade show" role="alert">
     {{ mensaje }}
+    <button type="button" class="btn-close" aria-label="Close" @click="cerrarAlert"></button>
+  </div>
+  <div v-if="msjErr" class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ mensaje }}
+    <button type="button" class="btn-close" aria-label="Close" @click="cerrarAlert"></button>
   </div>
 </template>
 <script>
@@ -59,10 +64,11 @@ export default {
         video: "",
         fecha: "",
         imagen: "",
-        
+
       },
       msj: false,
       mensaje: "",
+      msjErr: false,
       enabled: {
         texto: false,
         video: false,
@@ -83,45 +89,78 @@ export default {
       console.log(this.noticia)
 
     },
-   
+
 
     async insertarNoticia() {
       if (!this.noticia.fecha || !this.noticia.titulo) {
-        this.msj = true;
+        this.msj = false;
+        this.msjErr = true;
         this.mensaje = "Por favor, complete los campos obligatorios (Fecha y Título).";
-
-      }
-      else {
+      } else {
         var newDate = new Date(this.noticia.fecha + 'T00:00');
-        this.noticia.fecha = newDate
-        this.noticia.video = this.convertirEnlace(this.noticia.video)
-        console.log(this.noticia)
-        await ingresarNoticiaFachada(this.noticia);
-        this.msj = true
-        this.mensaje = "Noticia insertada con éxito"
-      }
+        this.noticia.fecha = newDate;
+        this.noticia.video = this.convertirEnlace(this.noticia.video);
+        console.log(this.noticia);
 
+        try {
+          await ingresarNoticiaFachada(this.noticia);
+          this.msj = true;
+          this.msjErr = false;
+          this.mensaje = "Noticia insertada con éxito";
+          this.reset()
+        } catch (error) {
+          if (error.response && error.response.status === 400) {
+            this.msj = false;
+            this.msjErr = true;
+            this.mensaje = "Error: Bad Request - Por favor, verifique los datos de la noticia.";
+          } else if (error.response && error.response.status === 500) {
+            this.msj = false;
+            this.msjErr = true;
+            this.mensaje = "Error interno del servidor. Intente nuevamente más tarde.";
+          } else {
+            this.msj = false;
+            this.msjErr = true;
+            this.mensaje = "Error desconocido. Intente nuevamente más tarde.";
+          }
+        }
+      }
+    },
+    cerrarAlert() {
+      this.msj = false;
+      this.msjErr = false;
+    },
+    reset() {
+      this.noticia = {
+        titulo: "",
+        texto: "",
+        video: "",
+        fecha: "",
+        imagen: "",
+
+      }
     },
     convertirEnlace(originalURL) {
-      // Verifica si la URL es un enlace de YouTube válido
       const regex = /https:\/\/www.youtube.com\/watch\?v=([A-Za-z0-9_\-]+)/;
       const match = originalURL.match(regex);
 
       if (match) {
-        // Si coincide con el patrón, construye el enlace de inserción
         const videoId = match[1];
         const embedURL = `https://www.youtube.com/embed/${videoId}`;
         return embedURL;
       } else {
-        // Si la URL no coincide con el patrón, devuelve un mensaje de error
         return "";
       }
     }
   },
+
 };
 </script>
 <style scoped>
 form {
   margin: 20px;
+}
+
+.alert {
+  margin-top: 20px;
 }
 </style>
