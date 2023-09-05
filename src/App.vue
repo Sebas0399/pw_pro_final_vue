@@ -1,5 +1,6 @@
 <template>
-  
+  <Home v-if="isHomePage"/>
+  <img v-if="isHomePage" src="./assets/images/UceWhite.png" class="center-image">
   <NavBar ></NavBar>
 
   <footer>
@@ -23,11 +24,18 @@
 <script>
 import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
+import Home from '@/components/Home.vue'
 
 export default {
   components: {
-    NavBar
+    NavBar,
+    Home
+  },
+  computed:{
+  isHomePage(){
+    return this.$route.path === "/";
   }
+}
   }
 </script>
 <style>
@@ -51,9 +59,16 @@ nav {
   padding: 30px;
 }
 
-
-
 nav a.router-link-exact-active {
   color: cornflowerblue;
+}
+
+.center-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  max-width: 50%;
+  max-height: 50%;
 }
 </style>

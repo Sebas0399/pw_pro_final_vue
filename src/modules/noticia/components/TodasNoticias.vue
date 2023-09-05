@@ -11,7 +11,7 @@
   <div class="container-noticias ">
     <Noticia v-for="noticia in noticiasPaginadas" :key="noticia.id" :noticia="noticia"></Noticia>
   </div>
-  <nav aria-label="Page navigation example">
+  <nav class="nav" aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
         <a class="page-link" href="#" @click="previousPage">Previous</a>
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       noticias: [],
-      noticiasPorPagina: 10,
+      noticiasPorPagina: 9,
       totalNoticias: 0,
       paginas: 0,
       currentPage: 1,
@@ -95,6 +95,25 @@ export default {
 .container-noticias {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* Espacio entre las noticias */
 }
 
+/* Ajuste para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .container-noticias {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ajuste para pantallas aún más pequeñas */
+@media (max-width: 576px) {
+  .container-noticias {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.nav{
+  display:sticky;
+  justify-content: center;
+}
 </style>
