@@ -1,6 +1,13 @@
 <template>
-  
-  <h1>Noticias Facultad</h1>
+  <header class="header-container">
+  <div class="background-image">
+    <img src="@/assets/images/news2.png" alt="">
+  </div>
+  <div class="text-overlay">
+    <h2>Noticias Facultad</h2>
+  </div>
+</header>
+ 
   <div class="container-noticias ">
     <Noticia v-for="noticia in noticiasPaginadas" :key="noticia.id" :noticia="noticia"></Noticia>
   </div>

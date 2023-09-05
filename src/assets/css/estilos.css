@@ -1,3 +1,12 @@
+
+
+@font-face {
+    font-family: 'mermaid';
+    src: url('../fonts/Mermaid1001.ttf') format('truetype');
+ }
+ 
+
+
 footer{
     background-color: rgb(4, 14, 29);
     color: white;
@@ -29,3 +38,41 @@ footer{
   footer h6{
     font-size: 10px;
   }
+
+
+
+  .header-container {
+    position: relative;
+    height: 300px; 
+    overflow: hidden;
+  }
+  
+  .background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+    filter: brightness(50%);
+  }
+  
+  .text-overlay {
+    position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px; /* Espacio interior del contenedor del texto */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo opaco con transparencia */
+
+  }
+  
+  .text-overlay h2 {
+    color: white; /* Color del texto */
+    font-size: 24px; /* Tamaño de fuente (ajusta según desees) */
+    text-align: center; /* Alineación del texto */
+    padding: 20px; /* Espacio interior del contenedor del texto */
+  }
+  
+  header h2{
+    font-family: mermaid;
+    font-size: 30px;
+  }
+

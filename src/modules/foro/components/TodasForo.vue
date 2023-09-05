@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <h1>Bienvenido al foro de la Universidad Central del Ecuador</h1>
+  <header class="header-container">
+  <div class="background-image">
+    <img src="@/assets/images/foro2.png" alt="">
   </div>
+  <div class="text-overlay">
+    <h2>Foro de la Facultad de Ingenieria y Ciencias Aplicadas</h2>
+  </div>
+</header>
+ 
   <div class="row">
     <ul class="nav flex-column col col-lg-2">
 
