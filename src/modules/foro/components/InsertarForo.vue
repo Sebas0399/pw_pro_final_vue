@@ -55,7 +55,6 @@ export default {
                 this.mostrarMensaje = true;
             }
 
-            await ingresarForoFachada(this.foro);
             this.msj=true;
 
         },
