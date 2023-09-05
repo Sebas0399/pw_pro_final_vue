@@ -1,10 +1,15 @@
 <template>
-  <div class="text">
-  <div>ERROR</div>
-  <h1>404</h1>
-  <hr>
-  <div>Página No Encontrada</div>
-</div>
+  <div class="d-flex align-items-center justify-content-center vh-100">
+      <div class="text-center">
+        <h1 class="display-1 fw-bold">404</h1>
+        <p class="fs-3"> <span class="text-danger">Opps!</span> Página no encontrada.</p>
+        <p class="lead">
+          La página que estás buscando no existe
+        </p>
+        <!-- Utiliza <router-link> en lugar de <a> para enlazar a una ruta específica -->
+        <router-link to="/" class="btn btn-primary">Volver</router-link>
+      </div>
+    </div>
 
 <div class="astronaut">
   <img src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-space-astronaut-cartoon-by-vexels.png" alt="" class="src">
@@ -50,9 +55,11 @@ background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #0
 .text{
   position:absolute;
   top:10%;
-  color:#fff;
+  color:black;
   text-align:center;
-
+  justify-content: center;
+  display: grid;
+  align-items: center;
 }
 h1{
   font-size:50px;
@@ -61,7 +68,7 @@ h1{
   position:absolute;
   width:2px;
   height:2px;
-  background:#fff;
+  background:black;
   right:0;
   animation:starTwinkle 3s infinite linear;
 }
@@ -70,6 +77,7 @@ h1{
   position:absolute;
   top:55%;
   animation:astronautFly 6s infinite linear;
+  z-index:-1;
 }
 @keyframes astronautFly{
   0%{

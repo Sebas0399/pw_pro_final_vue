@@ -96,6 +96,7 @@ export default {
 
 
     async insertarNoticia() {
+      console.log(this.noticia.autor)
       if (!this.noticia.fecha || !this.noticia.titulo) {
         this.msj = false;
         this.msjErr = true;

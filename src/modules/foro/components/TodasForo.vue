@@ -8,7 +8,7 @@
   </div>
 </header>
 <div class="row">
-    <ul class="nav flex-column col-lg-2">
+  <ul class="nav flex-column col-lg-2 col-md-4 col-sm-6">
 
       <li class="nav-item" v-for="(foro) in foros" :key="foro">
         <div class="row">
@@ -24,7 +24,7 @@
 
       </li>
     </ul>
-    <div class="container-foros col">
+    <div v-if="foros!=null" class="container-foros col">
       <Foro :foro="foro"></Foro>
 
     </div>
@@ -100,5 +100,12 @@ a:hover {
     text-align: center;
     /* Centrar el texto en dispositivos pequeños */
   }
+
+  .badge {
+    display: block;
+    margin: 0 auto;
+    /* Centrar el badge en dispositivos pequeños */
+  }
 }
+
 </style>

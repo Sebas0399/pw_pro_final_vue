@@ -85,16 +85,16 @@
   <div class="container-noticias ">
     <Noticia v-for="noticia in noticiasPaginadas" :key="noticia.id" :noticia="noticia"></Noticia>
   </div>
-  <nav class="nav" aria-label="Page navigation example">
+  <nav v-if="noticias.length!=0" class="nav" aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
-        <a class="page-link" href="#" @click="previousPage">Previous</a>
+        <a class="page-link" href="#" @click="previousPage">Anterior</a>
       </li>
       <li class="page-item" v-for="page in paginas" :key="page" :class="{ 'active': currentPage === page }">
         <a class="page-link" href="#" @click="goToPage(page)">{{ page }}</a>
       </li>
       <li class="page-item" :class="{ 'disabled': currentPage === paginas }">
-        <a class="page-link" href="#" @click="nextPage">Next</a>
+        <a class="page-link" href="#" @click="nextPage">Después</a>
       </li>
     </ul>
   </nav>
