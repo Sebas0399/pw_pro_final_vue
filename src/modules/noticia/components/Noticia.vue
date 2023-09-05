@@ -1,7 +1,7 @@
 <template>
   <div class="card" style="margin: 1rem; padding: 1rem;">
     <p>{{ noticia.fecha }}</p>
-    <p>{{ noticia.titulo }}</p>
+    <h1>{{ noticia.titulo }}</h1>
     <div v-if="noticia.texto != ''" class="card-body">
       <p>{{ noticia.texto.length > 100 ? noticia.texto.slice(0, 500) + '...' : noticia.texto }}</p>
     </div>
@@ -12,6 +12,8 @@
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen></iframe>
+      <p v-if="noticia.autor!=''">Autor: {{ noticia.autor }}</p>
+      <p v-else>Autor: anonimo</p>
 
     <!-- Botón para redirigir a otra página -->
 
@@ -41,6 +43,7 @@
 export default {
   mounted() {
     this.castFecha();
+    console.log(this.noticia)
   },
   props: {
     noticia: {

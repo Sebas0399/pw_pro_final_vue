@@ -35,7 +35,10 @@
         <label for="videoInput" class="form-label">Video</label>
         <input type="text" class="form-control" id="videoInput" v-model="noticia.video">
       </div>
-
+      <div class="mb-3">
+        <label for="autorInput" class="form-label">Autor</label>
+        <input type="text" class="form-control" id="autorInput" v-model="noticia.autor" required>
+      </div>
     </form>
 
     <div>
@@ -64,6 +67,7 @@ export default {
         video: "",
         fecha: "",
         imagen: "",
+        autor:"",
 
       },
       msj: false,
@@ -136,6 +140,7 @@ export default {
         video: "",
         fecha: "",
         imagen: "",
+        autor:""
 
       }
     },
