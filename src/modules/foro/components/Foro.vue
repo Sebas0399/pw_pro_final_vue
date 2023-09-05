@@ -2,7 +2,7 @@
     <div class="card" style="margin: 1rem; padding: 1rem;">
         <p>{{ foro.tema }}</p>
         <h1>Comentarios</h1>
-        <span class="badge bg-primary rounded-pill" v-if="this.foro.comentarios != null">{{ this.foro.comentarios.length
+        <span class="badge" v-if="this.foro.comentarios != null">{{ this.foro.comentarios.length
         }}</span>
         <ol class="list-group list-group-numbered">
             <li class="list-group-item d-flex justify-content-between align-items-start"
@@ -83,4 +83,13 @@ export default {
 };
 </script>
   
-<style></style>
+<style scoped>
+.card{
+    margin: 1rem;
+     padding: 1rem;
+     background-color: rgba(231, 185, 245, 0.5);
+}
+.badge{
+    background-color: rgb(59, 14, 100);
+}
+</style>

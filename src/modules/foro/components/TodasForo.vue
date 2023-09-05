@@ -7,9 +7,8 @@
     <h2>Foro de la Facultad de Ingenieria y Ciencias Aplicadas</h2>
   </div>
 </header>
- 
-  <div class="row">
-    <ul class="nav flex-column col col-lg-2">
+<div class="row">
+    <ul class="nav flex-column col-lg-2">
 
       <li class="nav-item" v-for="(foro) in foros" :key="foro">
         <div class="row">
@@ -64,11 +63,38 @@ export default {
 </script>
   
 <style scoped>
+/* Estilos para centrar verticalmente el contenido */
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .container-foros {
   display: grid;
-  
+  max-width: 100%;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
 a:hover{
-  color:red
+  color:pink;
+  cursor: pointer;
+}
+
+/* Estilos para el badge de comentarios */
+.badge {
+  font-size: 14px;
+}
+
+/* Media query para dispositivos pequeños (móviles) */
+@media screen and (max-width: 576px) {
+  .container-foros {
+    grid-template-columns: 1fr; /* Mostrar elementos uno debajo del otro en dispositivos pequeños */
+  }
+
+  .nav-link {
+    text-align: center; /* Centrar el texto en dispositivos pequeños */
+  }
 }
 </style>

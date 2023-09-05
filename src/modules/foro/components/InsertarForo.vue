@@ -9,12 +9,12 @@
             </div>
 
 
-            <button class="btn btn-primary" @click="insertarForo">Insertar</button>
+            <!-- <button class="btn btn-primary" @click="insertarForo">Insertar</button> -->
         </form>
         <button class="btn btn-primary" @click="insertarForo">Insertar</button>
     </div>
-    <div class="alert alert-success" role="alert">
-        Se inserto el foro correctamente
+    <div v-if="msj" class="alert alert-success" role="alert">
+        Se insertó el foro correctamente
     </div>
 </template>
 <script>
@@ -25,16 +25,16 @@ export default {
     },
     data() {
         return {
+            msj:false,
             foro: {
                 tema: "",
-
             },
         };
     },
     methods: {
         async insertarForo() {
             await ingresarForoFachada(this.foro);
-
+            this.msj=true;
 
         },
     },

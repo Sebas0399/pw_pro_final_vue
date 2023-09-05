@@ -76,3 +76,25 @@ footer{
     font-size: 30px;
   }
 
+  button{
+    background-color: rgb(59, 14, 100);
+    color: white; /* Cambia el color del texto */
+    border-radius: 10px;
+    border: pink;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.btn.btn-primary {
+    background-color: rgb(59, 14, 100);
+    color: white; /* Cambia el color del texto */
+    border-radius: 10px;
+    border: pink;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
+
+  }
+  
+  .btn.btn-primary:hover{
+    background-color: rgb(122, 76, 165);
+  }
+

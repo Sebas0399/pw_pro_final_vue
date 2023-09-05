@@ -202,4 +202,5 @@ button[type="submit"]:hover {
   justify-content: center;
   margin-top: 20px;
   /* Ajusta este margen según tus preferencias */
-}</style>
+}
+</style>

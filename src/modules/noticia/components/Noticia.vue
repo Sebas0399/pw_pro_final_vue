@@ -63,4 +63,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.card {
+  margin: 1rem;
+  padding: 1rem;
+  max-width: 100%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card iframe {
+  width: 100%;
+  height: auto;
+}
+</style>

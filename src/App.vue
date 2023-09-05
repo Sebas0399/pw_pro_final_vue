@@ -1,4 +1,5 @@
 <template>
+  <!-- <Error/> -->
   <Home v-if="isHomePage"/>
   <img v-if="isHomePage" src="./assets/images/UceWhite.png" class="center-image">
   <NavBar ></NavBar>
@@ -25,11 +26,13 @@
 import NavBar from '@/components/NavBar.vue'
 import Footer from '@/components/Footer.vue'
 import Home from '@/components/Home.vue'
+import Error from '@/components/404Error.vue'
 
 export default {
   components: {
     NavBar,
-    Home
+    Home,
+    Error
   },
   computed:{
   isHomePage(){
