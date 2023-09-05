@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <h1>Formulario de Quejas</h1>
+     <header class="header-container">
+  <div class="background-image">
+    <img src="@/assets/images/quejas3.png" alt="">
   </div>
+  <div class="text-overlay">
+    <h2>Formulario de quejas</h2>
+  </div>
+</header>
+
   <form @submit.prevent="insertarFormulario">
     <div class="form-group">
       <label for="nombre">Nombre:</label>
@@ -196,4 +202,5 @@ button[type="submit"]:hover {
   justify-content: center;
   margin-top: 20px;
   /* Ajusta este margen según tus preferencias */
-}</style>
+}
+</style>

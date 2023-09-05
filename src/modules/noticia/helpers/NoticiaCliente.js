@@ -6,14 +6,12 @@ export const ingresarNoticiaFachada = async (bodyNoticia) => {
     const response = await ingresarNoticia(bodyNoticia);
     const statusCode = response.status;
 
-    // Haz algo con el código de estado, por ejemplo:
     console.log(`Código de estado de ingreso de noticia: ${statusCode}`);
 
     return response.data;
   } catch (error) {
     const statusCode = error.response ? error.response.status : null;
 
-    // Maneja el error y el código de estado, por ejemplo:
     console.error(`Error con código de estado en ingreso de noticia: ${statusCode}`);
     throw error;
   }
@@ -24,14 +22,12 @@ export const obtenerTodasNoticiasFachada = async () => {
     const response = await obtenerTodasNoticias();
     const statusCode = response.status;
 
-    // Haz algo con el código de estado, por ejemplo:
     console.log(`Código de estado al obtener todas las noticias: ${statusCode}`);
 
     return response.data;
   } catch (error) {
     const statusCode = error.response ? error.response.status : null;
 
-    // Maneja el error y el código de estado, por ejemplo:
     console.error(`Error con código de estado al obtener todas las noticias: ${statusCode}`);
     throw error;
   }

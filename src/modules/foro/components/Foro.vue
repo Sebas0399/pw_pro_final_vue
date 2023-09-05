@@ -1,5 +1,6 @@
 <template>
     <div class="card" style="margin: 1rem; padding: 1rem;">
+
       <p>{{ foro.tema }}</p>
       <h1>Comentarios</h1>
       <span class="badge bg-primary rounded-pill" v-if="foro.comentarios != null">{{ foro.comentarios.length }}</span>
@@ -11,8 +12,8 @@
           </div>
         </li>
       </ol>
+
   
-      <!-- Paginación -->
       <nav aria-label="Page navigation">
         <ul class="pagination">
           <li class="page-item" :class="{ 'disabled': paginaActual === 1 }">
@@ -100,5 +101,16 @@
   };
   </script>
   
-  <style></style>
+
   
+
+<style scoped>
+.card{
+    margin: 1rem;
+     padding: 1rem;
+     background-color: rgba(231, 185, 245, 0.5);
+}
+.badge{
+    background-color: rgb(59, 14, 100);
+}
+</style>

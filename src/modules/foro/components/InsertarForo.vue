@@ -15,6 +15,7 @@
     <div class="alert" :class="mensaje.includes('correctamente') ? 'alert-success' : 'alert-danger'" role="alert"
         v-if="mostrarMensaje">
         {{ mensaje }}
+
     </div>
 </template>
 <script>
@@ -25,12 +26,14 @@ export default {
     },
     data() {
         return {
+            msj:false,
             foro: {
                 tema: "",
 
             }, mensaje: "",
             mostrarMensaje: false,
-        };
+            }
+        
     },
     methods: {
         async insertarForo() {
@@ -51,6 +54,9 @@ export default {
 
                 this.mostrarMensaje = true;
             }
+
+            await ingresarForoFachada(this.foro);
+            this.msj=true;
 
         },
 

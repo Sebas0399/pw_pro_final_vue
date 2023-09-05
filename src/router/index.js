@@ -7,9 +7,16 @@ import NoticiasInsertar from '../modules/noticia/components/InsertarNoticia.vue'
 import IngresarSuscripcion from '../modules/suscripcion/pages/IngresarSuscripcion.vue'
 import IngresarQueja from "../modules/queja/components/InsertarQueja.vue";
 import NotFound from "../components/NotFound.vue";
+import Home from '@/components/Home.vue'
 
 
 const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: Home,
+
+  },
   {
     path: '/noticias',
     name: 'noticias',

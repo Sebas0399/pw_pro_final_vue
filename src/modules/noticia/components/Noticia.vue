@@ -6,7 +6,7 @@
       <p>{{ noticia.texto.length > 100 ? noticia.texto.slice(0, 500) + '...' : noticia.texto }}</p>
     </div>
     <img :src="noticia.imagen" alt="" v-if="noticia.imagen != ''">
-    <h1 v-if="noticia.video != ''">SAPO</h1>
+    <h1 v-if="noticia.video != ''"></h1>
 
     <iframe v-if="noticia.video != ''" width="360" height="280" :src="noticia.video" title="YouTube video player"
       frameborder="0"
@@ -63,4 +63,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.card {
+  margin: 1rem;
+  padding: 1rem;
+  max-width: 100%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card iframe {
+  width: 100%;
+  height: auto;
+}
+</style>

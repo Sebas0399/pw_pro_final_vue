@@ -1,23 +1,29 @@
 <template>
-  <div>
-    <h1>Noticias Facultad</h1>
-    <div class="container-noticias" v-if="!notFound">
-      <Noticia v-for="noticia in noticiasPaginadas" :key="noticia.id" :noticia="noticia"></Noticia>
+  <header class="header-container">
+    <div class="background-image">
+      <img src="@/assets/images/news2.png" alt="">
     </div>
-    <div v-else>
-      <div class="d-flex align-items-center justify-content-center vh-50">
-            <div class="text-center">
-                <h1 class="display-1 fw-bold">404</h1>
-                <p class="fs-3"> <span class="text-danger">Opps!</span> No existen noticias.</p>
-              
-                <a class="btn btn-primary">Contacta con soporte</a>
-            </div>
-        </div>
+    <div class="text-overlay">
+      <h2>Noticias Facultad</h2>
     </div>
-    <nav aria-label="Page navigation example">
-      <!-- Resto de tu paginación -->
-    </nav>
+  </header>
+
+  <div class="container-noticias ">
+    <Noticia v-for="noticia in noticiasPaginadas" :key="noticia.id" :noticia="noticia"></Noticia>
   </div>
+  <nav class="nav" aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+        <a class="page-link" href="#" @click="previousPage">Previous</a>
+      </li>
+      <li class="page-item" v-for="page in paginas" :key="page" :class="{ 'active': currentPage === page }">
+        <a class="page-link" href="#" @click="goToPage(page)">{{ page }}</a>
+      </li>
+      <li class="page-item" :class="{ 'disabled': currentPage === paginas }">
+        <a class="page-link" href="#" @click="nextPage">Next</a>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
@@ -33,7 +39,8 @@ export default {
     return {
       noticias: [],
       notFound: false, // Variable para manejar el mensaje de error
-      noticiasPorPagina: 10,
+
+      noticiasPorPagina: 9,
       totalNoticias: 0,
       paginas: 0,
       currentPage: 1,
@@ -97,5 +104,24 @@ export default {
 .container-noticias {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .container-noticias {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .container-noticias {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.nav{
+  display:sticky;
+  justify-content: center;
 }
 </style>
