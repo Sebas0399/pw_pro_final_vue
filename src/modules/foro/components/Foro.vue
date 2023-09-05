@@ -1,9 +1,8 @@
 <template>
     <div class="card" style="margin: 1rem; padding: 1rem;">
 
-      <p>{{ foro.tema }}</p>
-      <h1>Comentarios</h1>
-      <span class="badge bg-primary rounded-pill" v-if="foro.comentarios != null">{{ foro.comentarios.length }}</span>
+      <h1>{{ foro.tema }}</h1>
+      <span class="badge bg-primary rounded-pill" v-if="foro.comentarios != null">Comentarios: {{ foro.comentarios.length }}</span>
       <ol class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-start"
             v-for="(comentario, index) in comentariosPaginados" :key="index">
@@ -14,7 +13,7 @@
       </ol>
 
   
-      <nav aria-label="Page navigation">
+      <nav class="nav" aria-label="Page navigation">
         <ul class="pagination">
           <li class="page-item" :class="{ 'disabled': paginaActual === 1 }">
             <a class="page-link" href="#" @click="irAPagina(paginaActual - 1)">Anterior</a>
@@ -91,6 +90,7 @@
         this.showModal = false;
         if (this.foro.comentarios) {
           this.foro.comentarios.push(this.newComentario);
+          console.log(this.foro)
           await actualizarForoFachada(this.foro, this.foro.id);
         } else {
           this.foro.comentarios = [this.newComentario];
@@ -108,9 +108,13 @@
 .card{
     margin: 1rem;
      padding: 1rem;
-     background-color: rgba(231, 185, 245, 0.5);
+     background-color: rgb(115, 115, 227);
 }
 .badge{
     background-color: rgb(59, 14, 100);
+}
+.nav{
+  display:sticky;
+  justify-content: center;
 }
 </style>

@@ -62,14 +62,6 @@ nav a.router-link-exact-active {
   color: cornflowerblue;
 }
 
-.center-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -40%);
-  max-width: 50%;
-  max-height: 50%;
-}
 .container-ts{
   z-index: -1;
 }

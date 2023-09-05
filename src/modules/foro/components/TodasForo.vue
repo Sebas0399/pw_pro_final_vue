@@ -4,7 +4,7 @@
     <img src="@/assets/images/foro2.png" alt="">
   </div>
   <div class="text-overlay">
-    <h2>Foro de la Facultad de Ingenieria y Ciencias Aplicadas</h2>
+    <h2>Foro de la Facultad de Ingeniería y Ciencias Aplicadas</h2>
   </div>
 </header>
 <div class="row">
@@ -45,10 +45,11 @@ export default {
   data() {
     return {
       foros: null,
-      foro:this.cambiarForo(1)
+      foro: this.cambiarForo(1)
     };
   },
   methods: {
+    
     async obtenerTodo() {
       const data = await obtenerTodasForoFachada();
       this.foros = data;
@@ -56,7 +57,7 @@ export default {
     async cambiarForo(id) {
       console.log(id)
       const data = await obtenerForoFachada(id);
-      this.foro=data
+      this.foro = data
     }
   },
 };
@@ -70,6 +71,7 @@ export default {
   align-items: center;
   text-align: center;
 }
+
 .container-foros {
   display: grid;
   max-width: 100%;
@@ -77,8 +79,8 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-a:hover{
-  color:pink;
+a:hover {
+  color: pink;
   cursor: pointer;
 }
 
@@ -90,11 +92,13 @@ a:hover{
 /* Media query para dispositivos pequeños (móviles) */
 @media screen and (max-width: 576px) {
   .container-foros {
-    grid-template-columns: 1fr; /* Mostrar elementos uno debajo del otro en dispositivos pequeños */
+    grid-template-columns: 1fr;
+    /* Mostrar elementos uno debajo del otro en dispositivos pequeños */
   }
 
   .nav-link {
-    text-align: center; /* Centrar el texto en dispositivos pequeños */
+    text-align: center;
+    /* Centrar el texto en dispositivos pequeños */
   }
 }
 </style>

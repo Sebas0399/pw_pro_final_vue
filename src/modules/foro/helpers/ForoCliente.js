@@ -52,8 +52,9 @@ const ingresarForo = async (bodyForo) => {
 }
 
 const actualizarForo = async (bodyForo, id) => {
+    console.log("Actualizar"+bodyForo)
     try {
-        const response = await axios.put(url + "/" + id, bodyForo);
+        const response = await axios.put(url , bodyForo);
         console.log(response.status); // Código de estado
         return response.data;
     } catch (error) {

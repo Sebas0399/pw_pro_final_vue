@@ -90,4 +90,14 @@ const particlesLoaded = async container => {
 <style>
 .container-ts{
   z-index: -1;
-}</style>
+}
+
+.center-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  max-width: 50%;
+  max-height: 50%;
+}
+</style>

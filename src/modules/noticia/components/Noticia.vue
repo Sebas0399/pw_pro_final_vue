@@ -72,6 +72,8 @@ export default {
   padding: 1rem;
   max-width: 100%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(0deg,rgb(149, 172, 249), white);
+  border: black 200px;
 }
 
 .card img {

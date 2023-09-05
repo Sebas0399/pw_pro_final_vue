@@ -69,11 +69,14 @@ footer{
     font-size: 24px; /* Tamaño de fuente (ajusta según desees) */
     text-align: center; /* Alineación del texto */
     padding: 20px; /* Espacio interior del contenedor del texto */
+    font-weight: bold;
+    font-size: 40px;
   }
   
   header h2{
-    font-family: mermaid;
-    font-size: 30px;
+    font-family: monospace ;
+    font-size: 100px;
+    font-style: bold;
   }
 
   button{
