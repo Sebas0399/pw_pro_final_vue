@@ -45,7 +45,7 @@ const ingresarForo = async (bodyForo) => {
     try {
         const response = await axios.post(url, bodyForo);
         console.log(response.status); // Código de estado
-        return response.data;
+        return response;
     } catch (error) {
         console.error(error);
     }
